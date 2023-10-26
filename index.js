@@ -10,7 +10,7 @@ const multer = require('multer');
 
 const {verifyToken, loginUserData} = require('./src/auth');
 const {singUp, singIn} = require('./controller/authController');
-const { hotelRoomList, hotelsRoomsInArea, hotelRoomDetailById } = require('./controller/hotelController');
+const { hotelRoomList, hotelsRoomsInArea, hotelRoomDetailById, hotelRoomByName, hotelSearchOptionNames } = require('./controller/hotelController');
 
 
 const hotelSchema = require('./schema/hotelSchema');
@@ -81,6 +81,10 @@ app.post("/displayHotelRoomDetailBy/:id", hotelRoomDetailById)
 
 //Api to Display Specific Area Hotel Detail
 app.post("/hotelsRoomsInArea", verifyToken, hotelsRoomsInArea)
+
+app.post("/hotelSearchOptionNames", hotelSearchOptionNames);
+
+app.post("/searchHotelRoomByName/:hotelName", hotelRoomByName);
 
 app.get("/loginUserData", loginUserData);
 

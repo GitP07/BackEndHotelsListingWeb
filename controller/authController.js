@@ -3,6 +3,7 @@ const user = require("../schema/customerDetailsSchema");
 const {createToken} = require("../src/auth");
 const bcrypt = require("bcrypt");
 
+
 module.exports.singUp = async (req, res, callBack) => {
   try {
     const {
@@ -67,6 +68,7 @@ module.exports.singIn = async (req, res, callBack) => {
     }
 
     token = createToken(userAvailable._id);
+
     res.cookie("token", token, {withCredentials: true, httpOnly: false});
 
     res.json({ message: `Login Sucessful`, userId: userAvailable._id ,token: token });
@@ -76,3 +78,5 @@ module.exports.singIn = async (req, res, callBack) => {
   }
 
 };
+
+

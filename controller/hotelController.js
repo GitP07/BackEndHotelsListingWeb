@@ -18,3 +18,35 @@ module.exports.hotelRoomDetailById = async (req, res) => {
     console.log(`id:${hotelId}`);
     res.json(hotelRoomInfo);
 }
+
+
+module.exports.hotelRoomByName = async(req, res) => {
+    
+    const hotel_name = req.params.hotelName;
+        const hotelRooms = await hotelSchema.find({hotel_name: {$regex: hotel_name, $options:'i'}});
+        if(hotelRooms.length > 0){
+            res.json(hotelRooms);
+        }
+        else{
+            res.json({message: `no hotel available`})
+        }
+
+}
+
+module.exports.hotelSearchOptionNames = async(req, res) =>{
+    const hotel_name = req.body.hotel_name;
+    const hotelNames = [];
+
+    const hotelRooms = await hotelSchema.find({hotel_name: {$regex: hotel_name, $options:'i'}});
+        if(hotelRooms.length > 0){
+            hotelRooms.map((hotels) => {
+                hotelNames.push({hotel_name:hotels.hotel_name});
+            })
+
+            res.json(hotelNames);
+        }
+        else{
+
+            res.json({message: `no hotel available`})
+        }
+}
