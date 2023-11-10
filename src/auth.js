@@ -20,7 +20,7 @@ module.exports.createToken = (id) => {
 module.exports.verifyToken = (req, res, callBack) => {
     const token = req.cookies.token;
     if (!token) {
-        return res.json({ Error: `Token Invalid` });
+        return res.json({ Error: `Token Invalid`, token:token });
     }
     jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
         if (err) {
