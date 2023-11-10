@@ -1,16 +1,19 @@
+const dotEnv = require('dotenv');
+dotEnv.config();
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const cookieParseer = require('cookie-parser');
 
 const mongoose = require('mongoose');
-const db_url = "mongodb+srv://priyesh7:7hCap9yPo88qiC7O@cluster0.6jnltjp.mongodb.net/ListsOfHotels?retryWrites=true&w=majority";
+const db_url = process.env.MONGO_DB_URL;
 const bodyPaser = require('body-parser');
 const multer = require('multer');
 
 const {verifyToken, loginUserData} = require('./src/auth');
 const {singUp, singIn} = require('./controller/authController');
-const { hotelRoomList, hotelsRoomsInArea, hotelRoomDetailById, hotelRoomByName, hotelSearchOptionNames } = require('./controller/hotelController');
+const { hotelRoomList, hotelsRoomsInArea, hotelRoomDetailById, hotelRoomByName, hotelSearchOptionNames, hotelRoomListByRating, hotelRoomRatingList, priceDescendingHotelList, priceAscendingHotelList } = require('./controller/hotelController');
 
 
 const hotelSchema = require('./schema/hotelSchema');
@@ -95,6 +98,13 @@ app.post("/availableHotel", async function (req, res) {
 
 })
 
+app.get("/hotelRatingList", hotelRoomRatingList);
+
+app.post("/hotelRoomListByRating", hotelRoomListByRating);
+
+app.get("/highToLowPriceHotelList", priceDescendingHotelList);
+
+app.get("/lowToHighPriceHotelList", priceAscendingHotelList);
 
 //Api to get Location of hotel
 app.post("/locationList", async function (req, res) {

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const dotEnv = require('dotenv')
+const dotEnv = require('dotenv');
 
 const userSchema = require('../schema/customerDetailsSchema');
 
@@ -33,33 +33,35 @@ module.exports.verifyToken = (req, res, callBack) => {
                 callBack();
 
             }
-            else{
-                return res.json({error: `User Not Found`});
+            else {
+                return res.json({ error: `User Not Found` });
             }
-           
+
         }
     })
 }
 
 
 /*Data of verify User */
-module.exports.loginUserData = (req, res) =>{
+module.exports.loginUserData = (req, res) => {
     token = req.cookies.token;
-    if(!token){
-        return res.json({Error: `tokenn Invalid`, tokenn: `Token= ${token}`});
+    if (!token) {
+        return res.json({ message: `token not available` });
     }
-    jwt.verify(token, process.env.JWT_SECRET, async(err, data) =>{
-        if(err){
-            return res.json({ERROR: err})
+    jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
+        if (err) {
+            return res.json({ ERROR: err })
         }
-        else{
+        else {
             const userData = await userSchema.findById(data.id);
-            if(userData){
+            if (userData) {
                 res.json(userData)
             }
-            else{
-                return res.json({Error: `user not available`});
+            else {
+                return res.json({ Error: `user not available` });
             }
         }
     })
 }
+
+
