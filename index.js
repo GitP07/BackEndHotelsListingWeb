@@ -7,7 +7,7 @@ const cors = require('cors');
 const cookieParseer = require('cookie-parser');
 
 const mongoose = require('mongoose');
-const db_url = MONGO_URL;
+const db_url = process.env.MONGO_URL;
 const bodyPaser = require('body-parser');
 const multer = require('multer');
 
