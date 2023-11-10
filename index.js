@@ -59,6 +59,10 @@ app.use(cookieParseer());
 
 
 //User Sing Up Api
+app.get("https://hotels-api-1035.onrender.com", (req,res) =>{
+   console.log("hello");
+   res.send("hello")
+})
 app.post("/singUp", singUp);
 
 //User Login Api
