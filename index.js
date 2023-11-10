@@ -78,7 +78,7 @@ app.post("/uploadImage", upload.any("file", 5),(req, res) => {
 
 //HOTEL API's
 //Api to Display All Hotel Detail
-app.get("/", verifyToken, hotelRoomList)
+app.get("/hotelsLists", verifyToken, hotelRoomList)
 
 //Api to display  Hotel Info by hotel Id
 app.post("/displayHotelRoomDetailBy/:id", hotelRoomDetailById)
