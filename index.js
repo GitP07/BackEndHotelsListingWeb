@@ -7,7 +7,7 @@ const cors = require('cors');
 const cookieParseer = require('cookie-parser');
 
 const mongoose = require('mongoose');
-const db_url = process.env.MONGO_DB_URL;
+const db_url = "mongodb+srv://priyesh7:7hCap9yPo88qiC7O@cluster0.6jnltjp.mongodb.net/ListsOfHotels?retryWrites=true&w=majority";
 const bodyPaser = require('body-parser');
 const multer = require('multer');
 
