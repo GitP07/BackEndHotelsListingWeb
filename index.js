@@ -54,7 +54,7 @@ mongoose
    })
 
 app.use(bodyPaser.json());
-app.use(cors({credentials: true, origin: ["https://hotels-c9fv.onrender.com"], methods: ["GET", "POST", "PUT", "DELETE"]}));
+app.use(cors({credentials: true, origin: "https://hotels-c9fv.onrender.com", methods: ["GET", "POST", "PUT", "DELETE"]}));
 app.use(cookieParseer());
 
 
