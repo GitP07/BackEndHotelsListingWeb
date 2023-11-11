@@ -69,7 +69,7 @@ module.exports.singIn = async (req, res, callBack) => {
 
     token = createToken(userAvailable._id);
 
-    res.cookie("token", token, {withCredentials: true, sameSite:"none", httpOnly: true, secure: true, domain:"https://hotels-c9fv.onrender.com"});
+    res.cookie("token", token, {withCredentials: true, sameSite:"none", httpOnly: false, secure: true,});
 
 
     res.json({ message: `Login Sucessful`, userId: userAvailable._id ,token: token });
