@@ -29,7 +29,7 @@ module.exports.singUp = async (req, res, callBack) => {
     });
 
     const token = createToken(newUser._id);
-    res.cookie("token", token, {withCredentials: true, sameSite:"none", httpOnly: true, secure: true, domain:"https://hotels-c9fv.onrender.com"});
+    res.cookie("token", token, {withCredentials: true, httpOnly: false});
     res.json({
       message: `User Register Sucessfully`,
       token: token,
@@ -69,7 +69,7 @@ module.exports.singIn = async (req, res, callBack) => {
 
     token = createToken(userAvailable._id);
 
-    res.cookie("token", token, {withCredentials: true, sameSite:"none", httpOnly: true, secure: true,});
+    res.cookie("token", token, {withCredentials: true, httpOnly: false, secure: true,});
 
 
     res.json({ message: `Login Sucessful`, userId: userAvailable._id ,token: token });
